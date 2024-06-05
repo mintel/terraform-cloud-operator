@@ -98,3 +98,9 @@ func secretKeyRef(ctx context.Context, c client.Client, nn types.NamespacedName,
 
 	return "", fmt.Errorf("unable to find key=%q in secret=%q namespace=%q", key, nn.Name, nn.Namespace)
 }
+
+// truncateLabelValue truncates the given string to 63 characters, which is the max length
+// of a Kubernetes label value.
+func truncateLabelValue(label string) string {
+	return label[:min(len(label), 63)]
+}

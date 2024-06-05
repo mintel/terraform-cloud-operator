@@ -95,8 +95,8 @@ func (r *ModuleReconciler) setOutputs(ctx context.Context, m *moduleInstance) er
 		Namespace: m.instance.Namespace,
 	}
 	labels := map[string]string{
-		"workspaceID": m.instance.Status.WorkspaceID,
-		"ModuleName":  m.instance.ObjectMeta.Name,
+		"workspaceID": truncateLabelValue(m.instance.Status.WorkspaceID),
+		"ModuleName":  truncateLabelValue(m.instance.ObjectMeta.Name),
 	}
 
 	// update ConfigMap output
